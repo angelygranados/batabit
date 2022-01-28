@@ -1,10 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const path = require("path");
-
 module.exports = (env, {mode}) => {
     const isProduction = mode === "production"
-
     return {
     entry: './src/index.js',
     output: {
@@ -18,43 +16,20 @@ module.exports = (env, {mode}) => {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                options: {
-                  presets: [
-                    [
-                      '@babel/preset-react',
-                      {
-                        runtime: 'automatic'
-                      }
-                    ]
-                  ]
-                }
+              test: /\.jsx?$/,
+              loader: 'babel-loader',
+              options: { presets: [[ '@babel/preset-react', { runtime: 'automatic' }]]}
             },
             { 
-                test: /\.scss$/, 
-                use: [
-                    {
-                      loader: MiniCSSExtractPlugin.loader,
-                    },
-                    'css-loader',
-                    'sass-loader',
-                  ]
-              },
-              {
-                test: /\.(png|gif|jpg|jpeg)$/,
-                use: [
-                  {
-                    'loader': 'file-loader',
-                    options: {
-                      name: 'assets/[hash].[ext]'
-                    }
-                  }
-                ]
-              }
+              test: /\.scss$/, 
+              use: [ { loader: MiniCSSExtractPlugin.loader }, 'css-loader', 'sass-loader' ]
+            },
+            {
+              test: /\.(png|gif|jpg|jpeg)$/,
+              use: [{'loader': 'file-loader', options: { name: 'assets/[hash].[ext]'}}]
+            }
         ]
     }, 
-    
     devServer: {
         open: true,
         port: 3000,
