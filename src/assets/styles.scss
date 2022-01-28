@@ -1,0 +1,9 @@
+@import "./variables";
+
+body { 
+    background: #00ffff;
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    margin: 0;
+}

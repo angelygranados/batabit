@@ -1,1 +1,2 @@
-# batabit
+# Batabit 
+## Mobile first project
